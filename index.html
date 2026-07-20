@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit Punjabi | Data Analyst | Python, SQL, Visualization</title>
+<meta name="description" content="Rohit Punjabi, Data Analyst who ships production code. Python, SQL, and visualization, backed by production engineering experience at Shrapnel.">
+<style>
+  :root{
+    --ink:#2b2226;
+    --ink-soft:#5c5156;
+    --ink-faint:#766a70;
+    --accent:#c81440;
+    --accent-soft:#fbe7ec;
+    --bg:#fdf8ec;
+    --bg-card:#fffdf6;
+    --bg-alt:#f8f0dd;
+    --line:#eadfc9;
+    --max:960px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px;
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;background:rgba(253,248,236,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);z-index:100;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-name{font-weight:700;font-size:1rem;color:var(--ink);letter-spacing:-.01em}
+  .nav-name:hover{text-decoration:none;color:var(--accent)}
+  .nav-links{display:flex;gap:22px;list-style:none}
+  .nav-links a{color:var(--ink-soft);font-size:.9rem;font-weight:500}
+  .nav-links a:hover{color:var(--accent);text-decoration:none}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.4rem;color:var(--ink);cursor:pointer}
+
+  /* ---------- Hero ---------- */
+  header{padding:52px 0 44px}
+  .hello{color:var(--ink);font-weight:800;font-size:1.25rem;margin-bottom:10px;letter-spacing:-.01em}
+  .kicker{
+    display:inline-block;background:var(--accent-soft);color:var(--accent);
+    font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 12px;border-radius:100px;margin-bottom:20px;
+  }
+  h1{font-size:clamp(2rem,5vw,3rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:18px}
+  h1 .accent{color:var(--accent)}
+  .hero-sub{font-size:1.125rem;color:var(--ink-soft);max-width:640px;margin-bottom:22px}
+  .hero-sub strong{color:var(--ink)}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;
+    font-weight:600;font-size:.95rem;transition:all .15s ease;border:1.5px solid transparent;
+  }
+  .btn:hover{text-decoration:none;transform:translateY(-1px)}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#a50f33}
+  .btn-outline{border-color:var(--line);color:var(--ink)}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-email{color:var(--ink-faint);font-size:.95rem}
+  .hero-email a{color:var(--ink-soft);font-weight:500}
+  .bring{list-style:none;margin:0 0 24px;max-width:640px}
+  .bring li{font-size:.95rem;color:var(--ink-soft);padding-left:20px;position:relative;margin-bottom:6px}
+  .bring li::before{content:"•";position:absolute;left:2px;color:var(--accent);font-weight:800}
+
+  /* ---------- Quick link tiles ---------- */
+  .tile-band{background:var(--accent);padding:30px 0}
+  .tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .tile{
+    display:block;background:var(--bg-card);border:2px solid var(--ink);border-radius:12px;
+    padding:18px 8px;text-align:center;font-weight:700;font-size:.95rem;color:var(--ink);
+    transition:all .15s ease;
+  }
+  .tile:hover{text-decoration:none;transform:translateY(-2px);color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- Sections ---------- */
+  section{padding:64px 0;scroll-margin-top:56px}
+  section.alt{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2{font-size:1.6rem;letter-spacing:-.01em;margin-bottom:8px}
+  .section-lead{color:var(--ink-soft);margin-bottom:36px;max-width:640px}
+
+  /* ---------- Projects ---------- */
+  .case{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:14px;
+    padding:36px;margin-bottom:28px;
+  }
+  .case-flag{border-color:var(--accent);border-width:1.5px}
+  .case-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  .case h3{font-size:1.25rem;letter-spacing:-.01em}
+  .case-org{color:var(--ink-faint);font-size:.88rem;font-weight:500;white-space:nowrap}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
+  .tag{
+    font-size:.78rem;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    padding:3px 10px;border-radius:100px;
+  }
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-bottom:22px}
+  .case-block h4{
+    font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);
+    margin-bottom:4px;font-weight:700;
+  }
+  .case-block p{font-size:.95rem;color:var(--ink-soft)}
+  .impact{
+    display:flex;gap:28px;flex-wrap:wrap;background:var(--bg-alt);border-radius:10px;
+    padding:18px 24px;margin-bottom:22px;
+  }
+  .stat{min-width:120px}
+  .stat .num{font-size:1.55rem;font-weight:800;color:var(--accent);letter-spacing:-.02em}
+  .stat .lbl{font-size:.8rem;color:var(--ink-soft)}
+  .diagram{margin:4px 0 8px;overflow-x:auto}
+  .diagram svg{display:block;min-width:560px;width:100%;height:auto}
+  .case-shot{margin:4px 0 18px}
+  .case-shot img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+  .case-shot figcaption{font-size:.8rem;color:var(--ink-faint);margin-top:8px}
+  .case-links{font-size:.9rem}
+  .case-links a{font-weight:600;margin-right:18px}
+  .case-duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .case-duo .case{margin-bottom:0;height:100%}
+  .case-duo .case-grid{grid-template-columns:1fr}
+
+  /* ---------- Experience ---------- */
+  .job{
+    display:grid;grid-template-columns:190px 1fr;gap:24px;
+    padding:28px 0;border-bottom:1px solid var(--line);
+  }
+  .job:last-of-type{border-bottom:none}
+  .job-when{color:var(--ink-faint);font-size:.88rem;font-weight:500;padding-top:3px}
+  .job h3{font-size:1.08rem;margin-bottom:2px}
+  .job .org{color:var(--accent);font-weight:600;font-size:.92rem;margin-bottom:10px}
+  .job ul{list-style:none}
+  .job li{
+    font-size:.95rem;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:7px;
+  }
+  .job li::before{content:"•";position:absolute;left:0;color:var(--accent)}
+  .job li strong{color:var(--ink)}
+  .edu-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .edu-row:last-child{border-bottom:none}
+  .edu-row .deg{font-weight:600}
+  .edu-row .inst{color:var(--ink-soft)}
+  .edu-row .when{color:var(--ink-faint);white-space:nowrap}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:44px}
+  .skill-col h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin-bottom:12px}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:.86rem;font-weight:500;color:var(--ink);background:var(--bg-card);
+    border:1px solid var(--line);padding:5px 13px;border-radius:8px;
+  }
+  .chip.hot{border-color:var(--accent);color:var(--accent);font-weight:600}
+  .certs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .cert{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:var(--bg-card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;
+  }
+  .cert .c-name{font-weight:600;font-size:.92rem}
+  .cert .c-meta{font-size:.8rem;color:var(--ink-faint)}
+  .cert a{font-size:.85rem;font-weight:600;white-space:nowrap}
+
+  /* ---------- Contact / footer ---------- */
+  .contact-box{text-align:center;padding:8px 0 12px}
+  .contact-box h2{margin-bottom:10px}
+  .contact-box p{color:var(--ink-soft);max-width:520px;margin:0 auto 26px}
+  .pubs{border-top:1px solid var(--line);padding:22px 0;font-size:.85rem;color:var(--ink-faint)}
+  .pubs a{color:var(--ink-soft)}
+  footer{border-top:1px solid var(--line);padding:20px 0;font-size:.82rem;color:var(--ink-faint)}
+  .foot-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:760px){
+    .nav-links{
+      display:none;position:absolute;top:56px;left:0;right:0;background:var(--bg);
+      flex-direction:column;gap:0;border-bottom:1px solid var(--line);
+    }
+    .tiles{grid-template-columns:repeat(2,1fr)}
+    .nav-links.open{display:flex}
+    .nav-links li{border-top:1px solid var(--line)}
+    .nav-links a{display:block;padding:14px 24px}
+    .nav-toggle{display:block}
+    header{padding:44px 0 40px}
+    .case{padding:24px}
+    .case-grid{grid-template-columns:1fr}
+    .case-duo{grid-template-columns:1fr;gap:0}
+    .case-duo .case{margin-bottom:28px;height:auto}
+    .job{grid-template-columns:1fr;gap:6px}
+    .skills-grid{grid-template-columns:1fr}
+    .certs{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="nav-name" href="#top">Rohit Punjabi</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="documents/Rohit_Punjabi_Data_Analyst.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <p class="hello">Hi, I'm Rohit Punjabi.</p>
+    <span class="kicker">Ex-Shrapnel · SQL · Python · Product Analytics · Open to work</span>
+    <h1>Data analyst who <span class="accent">ships production code.</span></h1>
+    <p class="hero-sub">
+      I'm an engineer who moved toward the analytics side of development: understanding player
+      behavior, tracking KPIs, and using data to help teams make better decisions. At Shrapnel
+      I built the telemetry pipeline and analytics dashboard for a live game,
+      <strong>cutting bug detection and analysis time by ~70%</strong>.
+    </p>
+    <ul class="bring">
+      <li>Telemetry and analytics systems built for live products</li>
+      <li>Dashboards, KPI tracking, and player behavior analytics</li>
+      <li>Strong engineering foundation: Python, SQL, TypeScript, C++</li>
+    </ul>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="documents/Rohit_Punjabi_Data_Analyst.pdf" target="_blank" rel="noopener">Download Resume</a>
+      <a class="btn btn-outline" href="https://github.com/Rohit-Punjabi" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/punjabi-rohit" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="hero-email">Mumbai, India · Open to remote and relocation · <a href="mailto:rohitmpunja@gmail.com">rohitmpunja@gmail.com</a></p>
+  </div>
+</header>
+
+<div class="tile-band">
+  <div class="wrap tiles">
+    <a class="tile" href="#projects">Projects</a>
+    <a class="tile" href="#experience">Experience</a>
+    <a class="tile" href="#skills">Skills</a>
+    <a class="tile" href="documents/Rohit_Punjabi_Data_Analyst.pdf" target="_blank" rel="noopener">Resume</a>
+    <a class="tile" href="#contact">Contact</a>
+  </div>
+</div>
+
+<section class="alt" id="projects">
+  <div class="wrap">
+    <h2>Featured Projects</h2>
+    <p class="section-lead">Case studies, not repo dumps. Each one starts with a question and ends with a decision.</p>
+
+    <!-- Project 1: flagship -->
+    <article class="case case-flag">
+      <div class="case-top">
+        <h3>Player Telemetry &amp; Analytics Platform</h3>
+        <span class="case-org">Shrapnel · shipped in production</span>
+      </div>
+      <div class="tags">
+        <span class="tag">C++</span><span class="tag">MongoDB</span><span class="tag">TypeScript</span>
+        <span class="tag">React</span><span class="tag">Unreal 5.3</span><span class="tag">REST APIs</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <h4>Business question</h4>
+          <p>Which weapons, maps, and mechanics were unbalancing matches, and where were players hitting bugs we couldn't reproduce?</p>
+        </div>
+        <div class="case-block">
+          <h4>Data</h4>
+          <p>Live gameplay event streams from thousands of play sessions: kills, weapon usage, movement paths, and power-up pickups, collected in-engine and stored in a MongoDB cloud backend.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach</h4>
+          <p>Defined the metric schema, built the in-engine collection layer in C++, then led development of a TypeScript/React analytics dashboard so designers could slice sessions without writing queries.</p>
+        </div>
+        <div class="case-block">
+          <h4>Outcome</h4>
+          <p>Designers moved from anecdote-driven to data-driven balance decisions; engineers located bug conditions from telemetry instead of repro attempts.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <div class="stat"><div class="num">~70%</div><div class="lbl">less time to detect &amp; analyze bugs</div></div>
+        <div class="stat"><div class="num">7</div><div class="lbl">early-access releases shipped</div></div>
+        <div class="stat"><div class="num">5+</div><div class="lbl">cross-disciplinary teams served</div></div>
+      </div>
+      <div class="diagram" aria-label="Telemetry pipeline diagram">
+        <svg viewBox="0 0 720 96" xmlns="http://www.w3.org/2000/svg" role="img">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#95878d"/>
+            </marker>
+          </defs>
+          <g font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="12" text-anchor="middle">
+            <rect x="4" y="24" width="128" height="48" rx="9" fill="#fbe7ec" stroke="#c81440" stroke-width="1.5"/>
+            <text x="68" y="44" fill="#c81440" font-weight="700">Game client</text>
+            <text x="68" y="60" fill="#5c5156">C++ · Unreal 5.3</text>
+            <line x1="136" y1="48" x2="176" y2="48" stroke="#95878d" stroke-width="1.5" marker-end="url(#arr)"/>
+            <rect x="180" y="24" width="128" height="48" rx="9" fill="#fff" stroke="#eadfc9" stroke-width="1.5"/>
+            <text x="244" y="44" fill="#2b2226" font-weight="700">Event ingestion</text>
+            <text x="244" y="60" fill="#5c5156">REST APIs</text>
+            <line x1="312" y1="48" x2="352" y2="48" stroke="#95878d" stroke-width="1.5" marker-end="url(#arr)"/>
+            <rect x="356" y="24" width="128" height="48" rx="9" fill="#fff" stroke="#eadfc9" stroke-width="1.5"/>
+            <text x="420" y="44" fill="#2b2226" font-weight="700">MongoDB</text>
+            <text x="420" y="60" fill="#5c5156">cloud backend</text>
+            <line x1="488" y1="48" x2="528" y2="48" stroke="#95878d" stroke-width="1.5" marker-end="url(#arr)"/>
+            <rect x="532" y="24" width="128" height="48" rx="9" fill="#fbe7ec" stroke="#c81440" stroke-width="1.5"/>
+            <text x="596" y="44" fill="#c81440" font-weight="700">Dashboard</text>
+            <text x="596" y="60" fill="#5c5156">TypeScript · React</text>
+          </g>
+        </svg>
+      </div>
+    </article>
+
+    <!-- Project 2: inventory analytics -->
+    <article class="case case-flag">
+      <div class="case-top">
+        <h3>Inventory Analytics &amp; Demand Forecasting</h3>
+        <span class="case-org">Wholesale clothing retailer · shipped as a desktop app</span>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">statsmodels</span>
+        <span class="tag">Plotly</span><span class="tag">Streamlit</span><span class="tag">Excel</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <h4>Business question</h4>
+          <p>What is actually selling, what is dead stock, and how much of each product should the store order in the coming months?</p>
+        </div>
+        <div class="case-block">
+          <h4>Data</h4>
+          <p>About 50 monthly Excel workbooks spanning 4+ years: inconsistent column names, quantities stored as text, and a product naming change that split sales histories in two.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach</h4>
+          <p>Built a Pandas pipeline that unifies every workbook into one tidy table with automated data health checks, matches renamed products by style code, selects the best forecast model per product, and validates accuracy by backtesting on held out months. Forecasts feed safety stock, reorder points, and a monthly order plan.</p>
+        </div>
+        <div class="case-block">
+          <h4>Key insight</h4>
+          <p>The data health checks caught quantities saved as text like "55 PCS", which had silently hidden <strong>about 38% of all sales</strong> and distorted which products looked like best sellers.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <div class="stat"><div class="num">~50</div><div class="lbl">messy Excel files unified</div></div>
+        <div class="stat"><div class="num">~38%</div><div class="lbl">of sales recovered by data checks</div></div>
+        <div class="stat"><div class="num">51</div><div class="lbl">months of history analyzed</div></div>
+      </div>
+      <figure class="case-shot">
+        <img src="images/inventory_overview.png" alt="Inventory analytics dashboard overview showing units sold per month and data health checks" loading="lazy">
+        <figcaption>Overview page: headline metrics, monthly sales trend, and automated data health checks. Demo dataset shown.</figcaption>
+      </figure>
+      <p class="case-links">
+        <a href="https://github.com/Rohit-Punjabi/inventory-analytics-dashboard" target="_blank" rel="noopener">Code &amp; full writeup on GitHub →</a>
+      </p>
+    </article>
+
+    <div class="case-duo">
+    <!-- Project 3 -->
+    <article class="case">
+      <div class="case-top">
+        <h3>AWS Image-Processing Automation</h3>
+        <span class="case-org">Shrapnel · internal tooling</span>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">AWS S3</span><span class="tag">Automation</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <h4>Problem</h4>
+          <p>Artists and tool users were manually processing and uploading image assets: repetitive, error-prone, and a steady drain on production time.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach &amp; outcome</h4>
+          <p>Designed a Python pipeline integrating with AWS S3 to automate the processing tasks end-to-end, <strong>reducing manual workload by ~30%</strong> and removing a class of upload errors entirely.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 4: F1 app -->
+    <article class="case">
+      <div class="case-top">
+        <h3>F1 Stats &amp; Race Companion App</h3>
+        <span class="case-org">Personal project · cross platform mobile</span>
+      </div>
+      <div class="tags">
+        <span class="tag">TypeScript</span><span class="tag">React Native</span><span class="tag">Expo</span>
+        <span class="tag">REST APIs</span><span class="tag">React Query</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <h4>Problem</h4>
+          <p>Formula 1 data lives in scattered sources: standings in one place, live session data in another, circuit and driver context in a third.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach &amp; outcome</h4>
+          <p>Built a mobile app that unifies <strong>four public data sources</strong> (Jolpica/Ergast, OpenF1, weather, Wikipedia) behind typed API clients with cached queries, powering standings, race results, pit stop and qualifying views, and driver and constructor comparisons.</p>
+        </div>
+      </div>
+      <p class="case-links"><a href="https://github.com/Rohit-Punjabi/F1App" target="_blank" rel="noopener">Code on GitHub →</a></p>
+    </article>
+
+    <!-- Project 5 -->
+    <article class="case">
+      <div class="case-top">
+        <h3>Image Classification with a CNN</h3>
+        <span class="case-org">Deep learning project</span>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">NumPy</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <h4>Problem</h4>
+          <p>Classify images reliably enough for downstream image-processing use.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach &amp; outcome</h4>
+          <p>Built and trained a convolutional neural network; pre-processed data with normalization and resizing, then evaluated performance with accuracy and validation curves to diagnose over/under-fitting.</p>
+        </div>
+      </div>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="section-lead">14 months shipping production features and data systems on a live game.</p>
+
+    <div class="job">
+      <div class="job-when">Feb 2024 to Sep 2024</div>
+      <div>
+        <h3>Software Engineer</h3>
+        <div class="org">Shrapnel, Redmond, WA</div>
+        <ul>
+          <li>Designed and built a <strong>player telemetry system</strong> (C++, MongoDB) tracking kills, weapon usage, movement, and power-ups, creating the data foundation for gameplay balance decisions.</li>
+          <li>Led development of an internal <strong>analytics dashboard</strong> (TypeScript, React), reducing bug detection and analysis time by <strong>~70%</strong> and improving player-behavior insight.</li>
+          <li>Shipped features across <strong>7 early-access releases</strong>, collaborating with 5+ cross-disciplinary teams.</li>
+          <li>Built a social system and a weapon-skin customization system for four gun types in Unreal 5.3.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-when">Aug 2023 to Feb 2024</div>
+      <div>
+        <h3>Tools Software Engineer</h3>
+        <div class="org">Shrapnel, Redmond, WA</div>
+        <ul>
+          <li>Automated image-processing workflows with <strong>Python + AWS S3</strong>, cutting manual workload by ~30%.</li>
+          <li>Built a web-based moderation tool (TypeScript/React) that streamlined content review into a 2-step process.</li>
+          <li>Delivered features that improved team productivity by <strong>80%</strong> and prevented data loss; fixed a critical bug reducing crashes by 30%.</li>
+          <li>Partnered directly with designers, artists, and power users to gather feedback and prioritize improvements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;font-size:1.2rem">Education</h2>
+    <div class="edu-row">
+      <span><span class="deg">M.S. Computer Science</span> · <span class="inst">DigiPen Institute of Technology, Redmond, WA</span></span>
+      <span class="when">2021 to 2023</span>
+    </div>
+    <div class="edu-row">
+      <span><span class="deg">B.E. Information Technology</span> · <span class="inst">Thadomal Shahani Engineering College, Mumbai</span></span>
+      <span class="when">2017 to 2021</span>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="skills">
+  <div class="wrap">
+    <h2>Skills &amp; Certifications</h2>
+    <p class="section-lead">Grouped by what matters for analysis work. Engineering depth is listed last, on purpose.</p>
+
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3>Analysis</h3>
+        <div class="chip-row">
+          <span class="chip hot">Python</span><span class="chip hot">SQL</span>
+          <span class="chip">Pandas</span><span class="chip">NumPy</span>
+          <span class="chip">scikit-learn</span><span class="chip">MySQL</span>
+          <span class="chip">MongoDB</span><span class="chip">Excel</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h3>Visualization</h3>
+        <div class="chip-row">
+          <span class="chip hot">Matplotlib</span><span class="chip hot">Seaborn</span>
+          <span class="chip">Plotly</span><span class="chip">IBM Cognos</span>
+          <span class="chip">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h3>Engineering Edge</h3>
+        <div class="chip-row">
+          <span class="chip">TypeScript / React</span><span class="chip">C++</span>
+          <span class="chip">AWS S3</span><span class="chip">Docker</span>
+          <span class="chip">Git</span><span class="chip">CI/CD</span>
+          <span class="chip">REST APIs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs">
+      <div class="cert">
+        <div>
+          <div class="c-name">Python for Data Science, AI &amp; Development</div>
+          <div class="c-meta">IBM · Feb 2026</div>
+        </div>
+        <a href="https://www.coursera.org/account/accomplishments/records/KT5ES48ZU784" target="_blank" rel="noopener">Verify →</a>
+      </div>
+      <div class="cert">
+        <div>
+          <div class="c-name">Data Analysis with Python</div>
+          <div class="c-meta">IBM · Mar 2026</div>
+        </div>
+        <a href="https://www.coursera.org/account/accomplishments/records/QHHDQTFULFGF" target="_blank" rel="noopener">Verify →</a>
+      </div>
+      <div class="cert">
+        <div>
+          <div class="c-name">Databases and SQL for Data Science with Python</div>
+          <div class="c-meta">IBM · Mar 2026</div>
+        </div>
+        <a href="https://www.coursera.org/account/accomplishments/records/7ICBHSJUH7WE" target="_blank" rel="noopener">Verify →</a>
+      </div>
+      <div class="cert">
+        <div>
+          <div class="c-name">Data Visualization with Python</div>
+          <div class="c-meta">IBM · Mar 2026</div>
+        </div>
+        <a href="https://www.coursera.org/account/accomplishments/records/5ME01FM6W6QI" target="_blank" rel="noopener">Verify →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-box">
+    <h2>Let's talk</h2>
+    <p>Open to Data Analytics, Product Analytics, and Product Manager roles. I reply fastest by email, and I'm happy to walk through any project in detail.</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" href="mailto:rohitmpunja@gmail.com">rohitmpunja@gmail.com</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/punjabi-rohit" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap pubs">
+  Published research:
+  <a href="https://www.irjet.net/archives/V7/i10/IRJET-V7I10286.pdf" target="_blank" rel="noopener">AI for Digital Games: LUDOTRIX (IRJET, 2020)</a> ·
+  <a href="https://doi.org/10.22214/ijraset.2020.32273" target="_blank" rel="noopener">Typed Text to Handwritten Text Conversion (IJRASET, 2020)</a>
+</div>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 Rohit Punjabi</span>
+    <span><a href="https://github.com/Rohit-Punjabi" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/punjabi-rohit" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('navToggle');
+  const links=document.getElementById('navLinks');
+  toggle.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>
