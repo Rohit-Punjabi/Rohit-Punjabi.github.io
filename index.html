@@ -159,7 +159,7 @@
     margin-top:30px;padding-top:26px;border-top:1px solid var(--line);
     color:var(--ink-soft);font-size:.95rem;max-width:660px;
   }
-  .more-btn{margin-top:14px;display:inline-flex}
+  .more-btn{margin-top:16px;display:flex;width:fit-content}
 
   /* ---------- Experience ---------- */
   .job{
@@ -220,6 +220,15 @@
   footer{border-top:1px solid var(--line);padding:20px 0;font-size:.82rem;color:var(--ink-faint)}
   .foot-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
+  .nav-links a.active{color:var(--accent)}
+  .nav-links a.active::after{content:"";display:block;height:2px;background:var(--accent);border-radius:2px;margin-top:2px}
+  .flow-mobile{display:none;list-style:none;margin:4px 0 8px}
+  .flow-mobile li{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;text-align:center;font-size:.85rem;color:var(--ink-soft)}
+  .flow-mobile li b{display:block;color:var(--ink);font-size:.92rem}
+  .flow-mobile li.hl{border-color:var(--accent);background:var(--accent-soft)}
+  .flow-mobile li.hl b{color:var(--accent)}
+  .flow-mobile .arrow{border:none;background:none;padding:4px 0;color:#95878d;font-size:1rem;line-height:1}
+
   /* ---------- Responsive ---------- */
   @media (max-width:860px){
     .fits{grid-template-columns:1fr}
@@ -234,6 +243,13 @@
     .nav-links.open{display:flex}
     .nav-links li{border-top:1px solid var(--line)}
     .nav-links a{display:block;padding:14px 24px}
+    .nav-links a.active::after{display:none}
+    .case-links a,.cert a,.hero-life a,.about-card a,.hero-email a,.foot-inner a,.pubs a{display:inline-block;padding:12px 0}
+    .nav-toggle{padding:8px 12px;margin-right:-12px}
+    .nav-name{padding:10px 0}
+    .case-links a{margin-right:22px}
+    .diagram svg{display:none}
+    .flow-mobile{display:block}
     .nav-toggle{display:block}
     header{padding:44px 0 40px}
     .hero-wrap{flex-direction:column-reverse;gap:22px}
@@ -295,7 +311,7 @@
     </ul>
     <p class="hero-life">Off the clock I'm usually planning my next trip, playing Rocket League, or out with my camera. <a href="#about">More about me &rarr;</a></p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="#fit">Get my resume</a>
+      <a class="btn btn-primary" href="#fit">Get my resume &darr;</a>
       <a class="btn btn-outline" href="https://github.com/Rohit-Punjabi" target="_blank" rel="noopener">GitHub</a>
       <a class="btn btn-outline" href="https://www.linkedin.com/in/punjabi-rohit" target="_blank" rel="noopener">LinkedIn</a>
     </div>
@@ -425,6 +441,15 @@
             <text x="596" y="60" fill="#5c5156">TypeScript · React</text>
           </g>
         </svg>
+        <ol class="flow-mobile" aria-hidden="true">
+          <li class="hl"><b>Game client</b>C++ · Unreal 5.3</li>
+          <li class="arrow">&darr;</li>
+          <li><b>Event ingestion</b>REST APIs</li>
+          <li class="arrow">&darr;</li>
+          <li><b>MongoDB</b>cloud backend</li>
+          <li class="arrow">&darr;</li>
+          <li class="hl"><b>Dashboard</b>TypeScript · React</li>
+        </ol>
       </div>
     </article>
 
@@ -812,6 +837,20 @@
   const links=document.getElementById('navLinks');
   toggle.addEventListener('click',()=>links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+  // Highlight the menu link for the section on screen
+  const navMap={};
+  links.querySelectorAll('a[href^="#"]').forEach(a=>{navMap[a.getAttribute('href').slice(1)]=a;});
+  const spy=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        Object.values(navMap).forEach(a=>{a.classList.remove('active');a.removeAttribute('aria-current');});
+        const a=navMap[e.target.id];
+        if(a){a.classList.add('active');a.setAttribute('aria-current','true');}
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(navMap).forEach(id=>{const el=document.getElementById(id);if(el) spy.observe(el);});
 </script>
 </body>
 </html>
