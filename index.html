@@ -146,8 +146,14 @@
   .case-shot figcaption{font-size:.8rem;color:var(--ink-faint);margin-top:8px}
   .case-links{font-size:.9rem}
   .case-links a{font-weight:600;margin-right:18px}
-  .case-duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
-  .case-duo .case{margin-bottom:0}
+  .case-duo{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .case-duo .case{margin-bottom:0;padding:26px}
+  .case-duo .case h3{font-size:1.1rem}
+  .case-duo .case-org{white-space:normal}
+  .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:4px 0 22px}
+  .shots figure{margin:0}
+  .shots img{display:block;width:100%;height:auto;border-radius:16px;border:2px solid var(--ink);background:#000}
+  .shots figcaption{font-size:.8rem;color:var(--ink-faint);margin-top:8px;text-align:center}
   .case-duo .case-grid{grid-template-columns:1fr}
   .more-line{
     margin-top:30px;padding-top:26px;border-top:1px solid var(--line);
@@ -217,6 +223,7 @@
   /* ---------- Responsive ---------- */
   @media (max-width:860px){
     .fits{grid-template-columns:1fr}
+    .case-duo{grid-template-columns:1fr 1fr}
   }
   @media (max-width:760px){
     .nav-links{
@@ -236,6 +243,7 @@
     .case-org{white-space:normal}
     .case-grid{grid-template-columns:1fr}
     .case-duo{grid-template-columns:1fr;gap:28px}
+    .shots{grid-template-columns:repeat(2,1fr)}
     .job{grid-template-columns:1fr;gap:6px}
     .skills-grid{grid-template-columns:1fr}
     .certs{grid-template-columns:1fr}
@@ -463,6 +471,36 @@
       </p>
     </article>
 
+    <!-- Project 5: F1 app -->
+    <article class="case case-flag">
+      <div class="case-top">
+        <h3>F1 Stats &amp; Race Companion App</h3>
+        <span class="case-org">Personal project · iOS, Android &amp; web</span>
+      </div>
+      <p class="uses">Shows <b>Engineering</b> · <b>Product</b> · <b>Data</b></p>
+      <div class="tags">
+        <span class="tag">TypeScript</span><span class="tag">React Native</span><span class="tag">Expo</span>
+        <span class="tag">REST APIs</span><span class="tag">React Query</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <h4>Problem</h4>
+          <p>Formula 1 data lives in scattered sources: standings in one place, live session data in another, circuit and driver context in a third.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach &amp; outcome</h4>
+          <p>Built a cross platform app (iOS, Android, web) that unifies <strong>five free public data sources</strong> (Jolpica, OpenF1, Open Meteo weather, Wikipedia, circuit geometry) behind typed API clients with cached queries: live race countdowns, full weekend results, circuit layouts, career stats, and side by side driver comparisons.</p>
+        </div>
+      </div>
+      <div class="shots">
+        <figure><img src="images/f1/schedule.jpg" alt="F1 app schedule screen with next race countdown and latest result" loading="lazy"><figcaption>Schedule &amp; countdown</figcaption></figure>
+        <figure><img src="images/f1/standings.jpg" alt="F1 app driver standings screen" loading="lazy"><figcaption>Driver standings</figcaption></figure>
+        <figure><img src="images/f1/weekend.jpg" alt="F1 app race weekend screen with session times and circuit map" loading="lazy"><figcaption>Race weekend</figcaption></figure>
+        <figure><img src="images/f1/results.jpg" alt="F1 app race results screen with grid positions and points" loading="lazy"><figcaption>Race results</figcaption></figure>
+      </div>
+      <p class="case-links"><a href="https://github.com/Rohit-Punjabi/F1App" target="_blank" rel="noopener">Code on GitHub →</a></p>
+    </article>
+
     <div class="case-duo">
     <!-- Project 3: moderation tool -->
     <article class="case">
@@ -506,30 +544,6 @@
           <p>Designed a Python pipeline integrating with AWS S3 to automate the processing tasks end to end, <strong>reducing manual workload by ~30%</strong> and removing a class of upload errors entirely.</p>
         </div>
       </div>
-    </article>
-
-    <!-- Project 5: F1 app -->
-    <article class="case">
-      <div class="case-top">
-        <h3>F1 Stats &amp; Race Companion App</h3>
-        <span class="case-org">Personal project · cross platform mobile</span>
-      </div>
-      <p class="uses">Shows <b>Engineering</b> · <b>Product</b></p>
-      <div class="tags">
-        <span class="tag">TypeScript</span><span class="tag">React Native</span><span class="tag">Expo</span>
-        <span class="tag">REST APIs</span><span class="tag">React Query</span>
-      </div>
-      <div class="case-grid">
-        <div class="case-block">
-          <h4>Problem</h4>
-          <p>Formula 1 data lives in scattered sources: standings in one place, live session data in another, circuit and driver context in a third.</p>
-        </div>
-        <div class="case-block">
-          <h4>Approach &amp; outcome</h4>
-          <p>Built a cross platform app (iOS, Android, web) that unifies <strong>five free public data sources</strong> (Jolpica, OpenF1, Open Meteo weather, Wikipedia, circuit geometry) behind typed API clients with cached queries: live race countdowns, full weekend results, circuit layouts, career stats, and side by side driver comparisons.</p>
-        </div>
-      </div>
-      <p class="case-links"><a href="https://github.com/Rohit-Punjabi/F1App" target="_blank" rel="noopener">Code on GitHub →</a></p>
     </article>
 
     <!-- Project 6: CNN -->
