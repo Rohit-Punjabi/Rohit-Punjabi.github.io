@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Projects | Rohit Punjabi</title>
+<meta name="description" content="The full project archive for Rohit Punjabi: apps, custom game engines, graphics and AI tech demos, and published research.">
+<style>
+  :root{
+    --ink:#2b2226; --ink-soft:#5c5156; --ink-faint:#766a70;
+    --accent:#c81440; --accent-soft:#fbe7ec;
+    --bg:#fdf8ec; --bg-card:#fffdf6; --bg-alt:#f8f0dd; --line:#eadfc9; --max:960px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  nav{position:sticky;top:0;background:rgba(253,248,236,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);z-index:100}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-name{font-weight:700;font-size:1rem;color:var(--ink);letter-spacing:-.01em}
+  .nav-name:hover{text-decoration:none;color:var(--accent)}
+  .nav-links{display:flex;gap:22px;list-style:none}
+  .nav-links a{color:var(--ink-soft);font-size:.9rem;font-weight:500}
+  .nav-links a.here{color:var(--accent)}
+  .nav-links a:hover{color:var(--accent);text-decoration:none}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.4rem;color:var(--ink);cursor:pointer}
+  .kicker{display:inline-block;background:var(--accent-soft);color:var(--accent);font-size:.78rem;
+    font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;
+    margin-bottom:18px}
+  h1{font-size:clamp(1.8rem,4.4vw,2.6rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+  h1 .accent{color:var(--accent)}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:.76rem;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    padding:3px 10px;border-radius:100px}
+  .pill{background:var(--bg-card);border:1px solid var(--line);border-radius:100px;padding:7px 16px;
+    font-size:.9rem;font-weight:600;color:var(--ink)}
+  .pill:hover{text-decoration:none;border-color:var(--accent);color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:22px 0;font-size:.82rem;color:var(--ink-faint);
+    margin-top:8px}
+  .foot-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  @media (max-width:760px){
+    .nav-links{display:none;position:absolute;top:56px;left:0;right:0;background:var(--bg);
+      flex-direction:column;gap:0;border-bottom:1px solid var(--line)}
+    .nav-links.open{display:flex}
+    .nav-links li{border-top:1px solid var(--line)}
+    .nav-links a{display:block;padding:14px 24px}
+    .nav-toggle{display:block}
+  }
+
+  header{padding:48px 0 34px}
+  .lead{font-size:1.05rem;color:var(--ink-soft);max-width:680px;margin-bottom:22px}
+  .back{font-size:.92rem;font-weight:600}
+  .featured-band{background:var(--bg-alt);border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);padding:26px 0}
+  .featured-band h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--ink-faint);margin-bottom:12px}
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px}
+  section{padding:52px 0;scroll-margin-top:56px}
+  section.alt{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2.group{font-size:1.45rem;letter-spacing:-.01em;margin-bottom:6px}
+  .group-lead{color:var(--ink-soft);margin-bottom:28px;max-width:640px;font-size:.98rem}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .card{display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+  .card:hover{transform:translateY(-2px);border-color:var(--accent);text-decoration:none}
+  a.card,a.card:hover{color:inherit}
+  .shot{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg-alt);
+    border-bottom:1px solid var(--line)}
+  .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:1.08rem;letter-spacing:-.01em;margin-bottom:3px}
+  .card .meta{font-size:.82rem;color:var(--ink-faint);font-weight:500;margin-bottom:10px}
+  .card p{font-size:.93rem;color:var(--ink-soft);margin-bottom:14px}
+  .card .tags{margin-top:auto}
+  .open{font-size:.88rem;font-weight:700;color:var(--accent);margin-top:12px}
+  .card-links{font-size:.88rem;font-weight:600;margin-top:12px}
+  @media (max-width:760px){ .grid{grid-template-columns:1fr} header{padding:40px 0 30px} }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="nav-name" href="index.html">Rohit Punjabi</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#projects">Featured</a></li>
+      <li><a class="here" href="projects.html">All Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="documents/Rohit_Punjabi_Data_Analyst.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <span class="kicker">Project archive</span>
+    <h1>Everything I have <span class="accent">built so far.</span></h1>
+    <p class="lead">
+      The home page keeps the case studies that matter most for analytics and product work. This page is
+      the full shelf: custom game engines, simulation and AI tech demos, and the apps I shipped, going back
+      to my masters at DigiPen. Every card opens its own page with the screenshots, videos, and code behind it.
+    </p>
+    <a class="back" href="index.html">&larr; Back to the home page</a>
+  </div>
+</header>
+
+<div class="featured-band">
+  <div class="wrap">
+    <h2>Featured case studies live on the home page</h2>
+    <div class="pill-row">
+      <a class="pill" href="index.html#projects">Player Telemetry &amp; Analytics Platform</a>
+      <a class="pill" href="index.html#projects">Inventory Analytics &amp; Demand Forecasting</a>
+      <a class="pill" href="index.html#projects">AWS Image Processing Automation</a>
+      <a class="pill" href="index.html#projects">F1 Stats &amp; Race Companion App</a>
+    </div>
+  </div>
+</div>
+
+<section class="" id="engines">
+  <div class="wrap">
+    <h2 class="group">Custom game engines and gameplay</h2>
+    <p class="group-lead">Team projects from my masters at DigiPen, all built on engines we wrote ourselves in C++ rather than on Unity or Unreal.</p>
+    <div class="grid">
+      <a class="card" href="projects/drifty-thrifty-bang-bang.html">
+        <img class="shot" src="images/archive/dtbb.jpg" alt="Drifty Thrifty Bang Bang" loading="lazy">
+        <div class="card-body">
+          <h3>Drifty Thrifty Bang Bang</h3>
+          <p class="meta">Desktop game on a custom 3D engine</p>
+          <p>A single player action adventure game about driving through arenas full of destructible objects and enemies, built with a team on a component based 3D engine we wrote in C++, SDL, OpenGL, FMOD, and Lua.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">OpenGL</span><span class="tag">SDL</span><span class="tag">FMOD</span><span class="tag">Lua</span><span class="tag">Figma</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/top-down-shooter.html">
+        <img class="shot" src="images/archive/lftclk.jpg" alt="Top Down Shooter" loading="lazy">
+        <div class="card-body">
+          <h3>Top Down Shooter</h3>
+          <p class="meta">Desktop game on a custom 2D engine</p>
+          <p>An arcade shooter built with a team on a component based 2D engine written in C++, SDL, DirectX, FMOD, and Lua.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">DirectX</span><span class="tag">SDL</span><span class="tag">Lua</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/behaviour-tree.html">
+        <img class="shot" src="images/archive/behaviourtree.jpg" alt="Behaviour Tree" loading="lazy">
+        <div class="card-body">
+          <h3>Behaviour Tree</h3>
+          <p class="meta">AI tech demo</p>
+          <p>Implemented a behaviour tree and wired it into our custom 2D engine, then used it to build a boss fight where the enemy shoots, dodges, spawns zombies, and repositions itself based on the state of the fight.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Game AI</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/goap-smart-objects.html">
+        <img class="shot" src="images/archive/goap.jpg" alt="Goal Oriented Action Planning with Smart Objects" loading="lazy">
+        <div class="card-body">
+          <h3>Goal Oriented Action Planning with Smart Objects</h3>
+          <p class="meta">AI tech demo, Unreal Engine</p>
+          <p>Instead of a separate action class, the planner compiles every smart object in the scene and reads preconditions and effects off the objects themselves. Agents query the planner with a current state and a goal state, get back an ordered list of objects to interact with, and step through it using an internal state machine so the behaviour reads as believable.</p>
+          <div class="tags"><span class="tag">Unreal Engine</span><span class="tag">C++</span><span class="tag">Game AI</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="graphics">
+  <div class="wrap">
+    <h2 class="group">Graphics, simulation, and math</h2>
+    <p class="group-lead">The projects where the interesting part is the maths and the numerical method, not the game around it.</p>
+    <div class="grid">
+      <a class="card" href="projects/soft-body-simulation.html">
+        <img class="shot" src="images/archive/softbody.jpg" alt="Soft Body Simulation" loading="lazy">
+        <div class="card-body">
+          <h3>Soft Body Simulation</h3>
+          <p class="meta">Physics tech demo</p>
+          <p>A cube made of 125 mass points, each carrying its own force, velocity, position, and mass, integrated with RK4 every frame. I built a spring data structure to connect points, drawn as yellow lines between the purple masses so you can watch the structure deform and settle.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">RK4</span><span class="tag">Numerical methods</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/bezier-curves.html">
+        <img class="shot" src="images/archive/bezier.jpg" alt="Bezier Curve Generator" loading="lazy">
+        <div class="card-body">
+          <h3>Bezier Curve Generator</h3>
+          <p class="meta">Academic project, MAT500 Curves and Surfaces</p>
+          <p>An application that generates Bezier curves from control points you place yourself, computing the same curve three different ways so you can compare them: De Casteljau nested linear interpolation, Bernstein polynomials, and midpoint subdivision.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Computational geometry</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/inverse-kinematics.html">
+        <img class="shot" src="images/archive/ik.jpg" alt="Inverse Kinematics" loading="lazy">
+        <div class="card-body">
+          <h3>Inverse Kinematics</h3>
+          <p class="meta">Animation tech demo</p>
+          <p>A demo that solves a joint chain back from a target position, so a limb reaches for a point in space and every joint above it settles into a pose that works.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Animation</span><span class="tag">Linear algebra</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="" id="ml">
+  <div class="wrap">
+    <h2 class="group">Machine learning</h2>
+    <p class="group-lead">Where the move toward data and analytics started.</p>
+    <div class="grid">
+      <a class="card" href="projects/cnn-image-classification.html">
+        <img class="shot" src="images/projects/cnn_hero.jpg" alt="Image Classification with a CNN" loading="lazy">
+        <div class="card-body">
+          <h3>Image Classification with a CNN</h3>
+          <p class="meta">Deep learning project</p>
+          <p>Trained convolutional networks across three datasets, comparing a fully connected network against a CNN and tracking accuracy over epochs to see where each one breaks down.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="apps">
+  <div class="wrap">
+    <h2 class="group">Apps and web</h2>
+    <p class="group-lead">Shipped products with real users, real UI decisions, and a database behind them.</p>
+    <div class="grid">
+      <a class="card" href="projects/dream-destinations.html">
+        <img class="shot" src="images/archive/dreamdestinations.jpg" alt="Dream Destinations" loading="lazy">
+        <div class="card-body">
+          <h3>Dream Destinations</h3>
+          <p class="meta">Travel planning website</p>
+          <p>A travel site that gets you ready for a trip rather than just selling one: food to expect in a country, places worth visiting, transport, and hotels, browsable by continent then country. The feedback form writes to a database behind an Apache server so responses can be reviewed for what people actually want.</p>
+          <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Apache</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/shooting-madness.html">
+        <img class="shot" src="images/archive/shootingmadness.jpg" alt="Shooting Madness!!" loading="lazy">
+        <div class="card-body">
+          <h3>Shooting Madness!!</h3>
+          <p class="meta">Android game, Unity</p>
+          <p>A space shooter for phones where you scavenge and destroy, but scoring rewards picking targets carefully: green blocks add points, white blocks take them away, and the clock keeps running. I built the spawning system that randomises object type and position on a timer.</p>
+          <div class="tags"><span class="tag">Unity3D</span><span class="tag">C#</span><span class="tag">Android</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/snake.html">
+        <img class="shot" src="images/archive/snake_alt.jpg" alt="Snake" loading="lazy">
+        <div class="card-body">
+          <h3>Snake</h3>
+          <p class="meta">Android game, Android Studio</p>
+          <p>The classic, rebuilt natively for modern phones. Touch navigation maps each direction to the snake's movement based on screen width and height, with the menu laid out in a constraints layout.</p>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Android Studio</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+
+      <a class="card" href="projects/roller-ball.html">
+        <img class="shot" src="images/archive/rollerball_alt.jpg" alt="Roller Ball" loading="lazy">
+        <div class="card-body">
+          <h3>Roller Ball</h3>
+          <p class="meta">Desktop game, Unity</p>
+          <p>Control a ball, stay on the platform, collect coins to reach the next level. The game manager runs on a four state machine covering playing, death, level complete, and game over.</p>
+          <div class="tags"><span class="tag">Unity3D</span><span class="tag">C#</span></div>
+          <p class="open">Open the case study &rarr;</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="" id="research">
+  <div class="wrap">
+    <h2 class="group">Published research</h2>
+    <p class="group-lead">Two papers from my undergraduate years, both applied rather than theoretical.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="card-body">
+          <h3>Artificial Intelligence for Digital Games: LUDOTRIX</h3>
+          <p class="meta">IRJET, 2020</p>
+          <p>Proposed a new take on Ludo that mixes artificial intelligence with mechanics borrowed from two of the most popular game genres.</p>
+          <div class="tags"><span class="tag">Game AI</span><span class="tag">Research</span></div>
+          <p class="card-links"><a href="https://www.irjet.net/archives/V7/i10/IRJET-V7I10286.pdf" target="_blank" rel="noopener">Read the paper &rarr;</a></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <h3>A Scalable Method for Conversion of Typed Text into Handwritten Text</h3>
+          <p class="meta">IJRASET, 2020</p>
+          <p>Built software that converts typed text into handwriting that looks like it came off a page, with the method designed to scale rather than being tuned to one writer.</p>
+          <div class="tags"><span class="tag">Applied ML</span><span class="tag">Python</span><span class="tag">Research</span></div>
+          <p class="card-links"><a href="https://doi.org/10.22214/ijraset.2020.32273" target="_blank" rel="noopener">Read the paper &rarr;</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center">
+    <h2 class="group">Want the short version?</h2>
+    <p class="group-lead" style="margin:0 auto 22px">The case studies on the home page are the ones I would
+      open first in an interview.</p>
+    <a class="pill" href="index.html#projects" style="display:inline-block">Back to featured projects</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>&copy; 2026 Rohit Punjabi</span>
+    <span><a href="https://github.com/Rohit-Punjabi" target="_blank" rel="noopener">GitHub</a> &middot;
+      <a href="https://www.linkedin.com/in/punjabi-rohit" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('navToggle');
+  const links=document.getElementById('navLinks');
+  toggle.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>

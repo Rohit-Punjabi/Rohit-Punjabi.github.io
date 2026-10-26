@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inverse Kinematics | Rohit Punjabi</title>
+<meta name="description" content="A demo that solves a joint chain back from a target position, so a limb reaches for a point in space and every joint above it settles into a pose that works.">
+<style>
+  :root{
+    --ink:#2b2226; --ink-soft:#5c5156; --ink-faint:#766a70;
+    --accent:#c81440; --accent-soft:#fbe7ec;
+    --bg:#fdf8ec; --bg-card:#fffdf6; --bg-alt:#f8f0dd; --line:#eadfc9; --max:960px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  nav{position:sticky;top:0;background:rgba(253,248,236,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);z-index:100}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-name{font-weight:700;font-size:1rem;color:var(--ink);letter-spacing:-.01em}
+  .nav-name:hover{text-decoration:none;color:var(--accent)}
+  .nav-links{display:flex;gap:22px;list-style:none}
+  .nav-links a{color:var(--ink-soft);font-size:.9rem;font-weight:500}
+  .nav-links a.here{color:var(--accent)}
+  .nav-links a:hover{color:var(--accent);text-decoration:none}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.4rem;color:var(--ink);cursor:pointer}
+  .kicker{display:inline-block;background:var(--accent-soft);color:var(--accent);font-size:.78rem;
+    font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;
+    margin-bottom:18px}
+  h1{font-size:clamp(1.8rem,4.4vw,2.6rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+  h1 .accent{color:var(--accent)}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:.76rem;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    padding:3px 10px;border-radius:100px}
+  .pill{background:var(--bg-card);border:1px solid var(--line);border-radius:100px;padding:7px 16px;
+    font-size:.9rem;font-weight:600;color:var(--ink)}
+  .pill:hover{text-decoration:none;border-color:var(--accent);color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:22px 0;font-size:.82rem;color:var(--ink-faint);
+    margin-top:8px}
+  .foot-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  @media (max-width:760px){
+    .nav-links{display:none;position:absolute;top:56px;left:0;right:0;background:var(--bg);
+      flex-direction:column;gap:0;border-bottom:1px solid var(--line)}
+    .nav-links.open{display:flex}
+    .nav-links li{border-top:1px solid var(--line)}
+    .nav-links a{display:block;padding:14px 24px}
+    .nav-toggle{display:block}
+  }
+
+  header{padding:44px 0 30px}
+  .lead{font-size:1.1rem;color:var(--ink-soft);max-width:680px;margin-bottom:18px}
+  .meta-line{color:var(--ink-faint);font-size:.92rem;font-weight:500;margin-bottom:16px}
+  .head-tags{margin-bottom:20px}
+  .crumb{font-size:.9rem;font-weight:600;margin-bottom:20px;display:block}
+  article{padding:8px 0 48px}
+  article h2{font-size:1.25rem;letter-spacing:-.01em;margin:40px 0 12px}
+  article p{color:var(--ink-soft);max-width:680px;margin-bottom:16px}
+  article ul{list-style:none;max-width:680px;margin-bottom:18px}
+  article li{color:var(--ink-soft);padding-left:20px;position:relative;margin-bottom:8px}
+  article li::before{content:"\2022";position:absolute;left:2px;color:var(--accent);font-weight:800}
+  figure{margin:22px 0 26px}
+  figure img,figure video{display:block;width:100%;height:auto;border-radius:12px;
+    border:1px solid var(--line);background:#000}
+  figure img{background:var(--bg-alt)}
+  figcaption{font-size:.85rem;color:var(--ink-faint);margin-top:9px;max-width:680px}
+  .embed{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);background:#000}
+  .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .gist-wrap{margin:18px 0 26px;font-size:.9rem}
+  .links-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;padding-top:26px;
+    border-top:1px solid var(--line)}
+  .pager{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 0 10px;
+    border-top:1px solid var(--line);font-size:.92rem;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="nav-name" href="../index.html">Rohit Punjabi</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#projects">Featured</a></li>
+      <li><a href="../projects.html">All Projects</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../documents/Rohit_Punjabi_Data_Analyst.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <a class="crumb" href="../projects.html">&larr; All projects</a>
+    <span class="kicker">Graphics, simulation, and math</span>
+    <h1>Inverse Kinematics</h1>
+    <p class="meta-line">Animation tech demo</p>
+    <p class="lead">Give the end of a joint chain a target, and let the maths work out where every joint above it has to go.</p>
+    <div class="head-tags"><div class="tags"><span class="tag">C++</span><span class="tag">Animation</span><span class="tag">Linear algebra</span></div></div>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+      <p>Forward kinematics is the easy direction: set the joint angles, see where the hand ends up. Inverse kinematics runs it backwards. You say where the hand should be, and the solver works out a set of joint angles that puts it there while keeping the rest of the chain in a pose that looks right. It is the difference between animating every joint by hand and telling a character to reach for something.</p>
+      <h2>The demo</h2>
+      <figure>
+        <video src="../videos/IKVideo.mp4" poster="../images/posters/IKVideo.jpg" controls preload="none" playsinline></video>
+      </figure>
+  </div>
+</article>
+
+<div class="wrap pager">
+  <a href="bezier-curves.html">&larr; Bezier Curve Generator</a>
+  <a href="cnn-image-classification.html">Image Classification with a CNN &rarr;</a>
+</div>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>&copy; 2026 Rohit Punjabi</span>
+    <span><a href="https://github.com/Rohit-Punjabi" target="_blank" rel="noopener">GitHub</a> &middot;
+      <a href="https://www.linkedin.com/in/punjabi-rohit" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('navToggle');
+  const links=document.getElementById('navLinks');
+  toggle.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>
