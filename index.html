@@ -150,6 +150,9 @@
   .case-duo .case{margin-bottom:0;padding:26px}
   .case-duo .case h3{font-size:1.1rem}
   .case-duo .case-org{white-space:normal}
+  .case-duo .tags{margin-bottom:14px}
+  .summary{font-size:.95rem;color:var(--ink-soft);margin-bottom:14px}
+  .summary strong{color:var(--ink)}
   .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:4px 0 22px}
   .shots figure{margin:0}
   .shots img{display:block;width:100%;height:auto;border-radius:16px;border:2px solid var(--ink);background:#000}
@@ -475,7 +478,7 @@
         </div>
         <div class="case-block">
           <h4>What I did</h4>
-          <p>I built a Pandas pipeline that unifies every workbook into one tidy table with automated data health checks, matches renamed products by style code, selects the best forecast model per product, and validates accuracy by backtesting on held out months. Then I wrapped it in a desktop app the team runs themselves, where forecasts feed safety stock, reorder points, and a monthly order plan. I used Claude as my coding partner throughout, which took it from idea to working product fast.</p>
+          <p>I built a Pandas pipeline that merges every workbook into one clean table with automated health checks, matches renamed products, and picks and backtests the best forecast per product. Then I wrapped it in a desktop app the team runs themselves, with Claude as my coding partner, turning forecasts into reorder points and a monthly order plan.</p>
         </div>
         <div class="case-block">
           <h4>Key insight</h4>
@@ -537,16 +540,7 @@
       <div class="tags">
         <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">User research</span>
       </div>
-      <div class="case-grid">
-        <div class="case-block">
-          <h4>Problem</h4>
-          <p>Senior reviewers were stuck in a fragmented, multi step content review process, and our internal tools kept slowing the team down.</p>
-        </div>
-        <div class="case-block">
-          <h4>Approach &amp; outcome</h4>
-          <p>I ran interviews and usability tests with reviewers, designers and artists, redesigned review into a <strong>2 step flow</strong>, and built the web tool in TypeScript and React. Together with the fixes that came out of that research, team productivity went up <strong>80%</strong>.</p>
-        </div>
-      </div>
+      <p class="summary">Reviewers were stuck in a messy, multi step review process. I ran interviews and usability tests, redesigned it into a <strong>2 step flow</strong> and built the tool in TypeScript and React, lifting team productivity by <strong>80%</strong>.</p>
     </article>
 
     <!-- Project 4: AWS -->
@@ -559,16 +553,7 @@
       <div class="tags">
         <span class="tag">Python</span><span class="tag">AWS S3</span><span class="tag">Automation</span>
       </div>
-      <div class="case-grid">
-        <div class="case-block">
-          <h4>Problem</h4>
-          <p>Artists and tool users were manually processing and uploading image assets: repetitive, error prone, and a steady drain on production time.</p>
-        </div>
-        <div class="case-block">
-          <h4>Approach &amp; outcome</h4>
-          <p>Designed a Python pipeline integrating with AWS S3 to automate the processing tasks end to end, <strong>reducing manual workload by ~30%</strong> and removing a class of upload errors entirely.</p>
-        </div>
-      </div>
+      <p class="summary">Artists were processing and uploading image assets by hand. I built a Python pipeline on AWS S3 that automated it end to end, <strong>cutting manual work by ~30%</strong> and removing a whole class of upload errors.</p>
     </article>
 
     <!-- Project 6: CNN -->
@@ -581,16 +566,7 @@
       <div class="tags">
         <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">NumPy</span>
       </div>
-      <div class="case-grid">
-        <div class="case-block">
-          <h4>Problem</h4>
-          <p>Classify images reliably enough for downstream image processing use.</p>
-        </div>
-        <div class="case-block">
-          <h4>Approach &amp; outcome</h4>
-          <p>Built and trained a convolutional neural network; preprocessed data with normalization and resizing, then evaluated performance with accuracy and validation curves to diagnose over and underfitting.</p>
-        </div>
-      </div>
+      <p class="summary">I built and trained a convolutional neural network in TensorFlow, then used accuracy and validation curves to diagnose over and underfitting on each iteration.</p>
       <p class="case-links"><a href="projects/cnn-image-classification.html">Full write up &rarr;</a></p>
     </article>
     </div>
@@ -614,10 +590,8 @@
         <h3>Digital Experience Designer</h3>
         <div class="org">Freelance, Mumbai</div>
         <ul>
-          <li>I design <strong>cohesive digital experiences</strong> for people's big moments, keeping one visual identity across websites, digital publications, invitations and other content.</li>
-          <li>Designed, wrote and laid out a <strong>20 page custom editorial magazine</strong> for an engagement anniversary, from the cover and contents page to feature stories, a timeline and a closing letter.</li>
-          <li>Designed and built a <strong>wedding invitation website</strong> and deployed it on Netlify, plus a matching set of <strong>digital invitation cards</strong> so everything felt like one brand.</li>
-          <li>This work is private for the families involved, so I don't share it here, but I'm happy to walk through it in an interview.</li>
+          <li>Designed a <strong>20 page custom editorial magazine</strong>, a <strong>wedding invitation website</strong> and matching digital invites, keeping one visual identity across everything.</li>
+          <li>This work is private for the families involved, so it isn't shown here, but I'm happy to walk through it in an interview.</li>
         </ul>
       </div>
     </div>
@@ -628,10 +602,8 @@
         <h3>Independent Projects &amp; Upskilling</h3>
         <div class="org">Mumbai, India</div>
         <ul>
-          <li>Built and shipped an <strong>inventory analytics and demand forecasting app</strong> for a wholesale clothing retailer, unifying ~50 messy Excel files and recovering ~38% of hidden sales.</li>
-          <li>Built a cross platform <strong>F1 stats and race companion app</strong> in TypeScript and React Native on top of five public data sources.</li>
-          <li>Earned <strong>4 IBM certifications</strong> in Python, data analysis, SQL and data visualization.</li>
-          <li>Designed and built this portfolio with Claude as my coding partner.</li>
+          <li>Shipped the <strong>inventory forecasting app</strong> and the <strong>F1 companion app</strong> featured above.</li>
+          <li>Earned <strong>4 IBM certifications</strong> in Python, data analysis, SQL and visualization, and built this site with Claude.</li>
         </ul>
       </div>
     </div>
@@ -653,11 +625,9 @@
         <h3>Software Engineer</h3>
         <div class="org">Shrapnel, Seattle, WA</div>
         <ul>
-          <li>Designed and built a <strong>player telemetry system</strong> (C++, MongoDB) tracking kills, weapon usage, movement, and power ups, creating the data foundation for gameplay balance decisions.</li>
-          <li>Led development of an internal <strong>analytics dashboard</strong> (TypeScript, React), reducing bug detection and analysis time by <strong>~70%</strong> and improving player behavior insight.</li>
+          <li>Built the <strong>player telemetry system</strong> (C++, MongoDB) and led the <strong>analytics dashboard</strong> on top of it (TypeScript, React), cutting bug detection and analysis time by <strong>~70%</strong>.</li>
           <li>Defined the core <strong>player KPIs</strong> (retention, session length, engagement funnels) that guided roadmap priorities.</li>
-          <li>Shipped features across <strong>7 early access releases</strong>, collaborating with 5+ cross disciplinary teams.</li>
-          <li>Owned a social system (friend requests and team play) from build to launch, and built a weapon skin customization system for four gun types in Unreal 5.3.</li>
+          <li>Shipped across <strong>7 early access releases</strong> with 5+ teams, including a social system I owned from build to launch and a weapon skin system in Unreal 5.3.</li>
         </ul>
       </div>
     </div>
@@ -668,10 +638,9 @@
         <h3>Tools Software Engineer</h3>
         <div class="org">Shrapnel, Seattle, WA</div>
         <ul>
-          <li>Automated image processing workflows with <strong>Python + AWS S3</strong>, cutting manual workload by ~30%.</li>
-          <li>Built a web based moderation tool (TypeScript/React) that streamlined content review into a 2 step process.</li>
-          <li>Delivered features that improved team productivity by <strong>80%</strong> and prevented data loss; fixed a critical bug reducing crashes by 30%.</li>
-          <li>Ran <strong>interviews and usability tests</strong> with designers, artists, and power users, then prioritized the fixes that mattered most.</li>
+          <li>Ran <strong>interviews and usability tests</strong> with designers, artists and power users, then shipped fixes that lifted team productivity by <strong>80%</strong>.</li>
+          <li>Built a web based <strong>moderation tool</strong> (TypeScript, React) that cut content review down to 2 steps.</li>
+          <li>Automated image processing with <strong>Python + AWS S3</strong> (~30% less manual work) and fixed a critical bug that cut crashes by 30%.</li>
         </ul>
       </div>
     </div>
